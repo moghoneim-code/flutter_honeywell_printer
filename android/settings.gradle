@@ -1,0 +1,5 @@
+include ':flutter_honeywell_printer'
+rootProject.name = 'flutter_honeywell_printer'
+include ':flutter'
+project(':flutter').projectDir = new File(rootProject.projectDir, '../.android/flutter')
+
