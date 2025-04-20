@@ -48,8 +48,7 @@ class _MyAppState extends State<MyApp> {
   //   });
   // }
 
-  Future<String?> _pickFile()async{
-
+  Future<String?> _pickFile() async {
     final result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['pdf'],
@@ -64,12 +63,12 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         floatingActionButton: FloatingActionButton(onPressed: () async {
-      FlutterHoneywellPrinter.connectPrinter("DC:1D:30:92:DA:8E");
-      /// save this file in your device storage
-      /// and then use the path to print
-final path = await _pickFile();
-      FlutterHoneywellPrinter.printPdf(path!);
-       // print(result);
+          final printerConnectionResult =
+              await FlutterHoneywellPrinter.connectPrinter("DC:1D:30:92:DA:8E");
+          print('printer connection result: $printerConnectionResult');
+
+          final path = await _pickFile();
+          FlutterHoneywellPrinter.printPdf(path!);
         }),
         appBar: AppBar(
           title: const Text('Plugin example app'),

@@ -74,7 +74,7 @@ class FlutterHoneywellPrinter {
   /// Returns true if connection was successful
   /// Throws PlatformException if connection fails or permissions are denied
   static Future<bool> connectPrinter(String macAddress) async {
-    if (macAddress == null || macAddress.isEmpty) {
+    if (macAddress.isEmpty) {
       throw PlatformException(
           code: 'INVALID_ARGUMENT',
           message: 'MAC address is required'
