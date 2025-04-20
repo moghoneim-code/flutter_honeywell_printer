@@ -64,7 +64,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         floatingActionButton: FloatingActionButton(onPressed: () async {
-      FlutterHoneywellPrinter.connectPrinter("DC:1D:30:A1:3A:0B");
+      FlutterHoneywellPrinter.connectPrinter("DC:1D:30:92:DA:8E");
       /// save this file in your device storage
       /// and then use the path to print
 final path = await _pickFile();
