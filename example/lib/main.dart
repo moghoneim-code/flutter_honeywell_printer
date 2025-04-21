@@ -17,7 +17,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
+  final String _platformVersion = 'Unknown';
   final _flutterHoneywellPrinterPlugin = FlutterHoneywellPrinter();
 
   @override
@@ -67,8 +67,17 @@ class _MyAppState extends State<MyApp> {
               await FlutterHoneywellPrinter.connectPrinter("DC:1D:30:92:DA:8E");
           print('printer connection result: $printerConnectionResult');
 
+          if (printerConnectionResult) {
+            final path = await _pickFile();
+           await  FlutterHoneywellPrinter.printPdfFromPath(path!);
+          } else {
+            throw Exception(
+              'Printer connection failed: ${await FlutterHoneywellPrinter.lastConnectionError}',
+            );
+          }
+
           final path = await _pickFile();
-          FlutterHoneywellPrinter.printPdf(path!);
+          FlutterHoneywellPrinter.printPdfFromPath(path!);
         }),
         appBar: AppBar(
           title: const Text('Plugin example app'),

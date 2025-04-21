@@ -117,7 +117,7 @@ class FlutterHoneywellPrinter {
   ///
   /// Returns true if printing was successful
   /// Throws PlatformException if printing fails
-  static Future<bool> printPdf(String pdfPath, {bool withGap = false}) async {
+  static Future<bool> printPdfFromPath(String pdfPath, {bool withGap = false}) async {
     // Check if file exists
     final file = File(pdfPath);
     if (!await file.exists()) {
@@ -135,12 +135,14 @@ class FlutterHoneywellPrinter {
       );
     }
 
+
     try {
       final bool result = await _channel.invokeMethod('printPdf', {
         'pdfPath': pdfPath,
         'withGap': withGap,
       });
-      return result;
+      return result ;
+
     } on PlatformException {
       // Let the original exception propagate to caller
       rethrow;
